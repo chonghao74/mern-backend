@@ -148,13 +148,18 @@ router.patch("/update", async (req, res) => {
       }
 
       const { _id, title, description, price } = req.body;
-      const dbUpdateResult = await Course.updateOne({ _id: _id },
+      //const dbUpdateResult = await Course.updateOne({ _id: _id },
+      const dbUpdateResult = await Course.findOneAndUpdate({ _id: _id },
         {
           $set: {
             title: title,
             description: description,
             price: price
           }
+        },
+        {
+          new: true,
+          runValidators: true
         });
       if (dbUpdateResult) {
         return res.json({
