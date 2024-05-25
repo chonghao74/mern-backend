@@ -106,7 +106,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-//更新課程內容
+//更新課程內容 (only Insductor)
 router.patch("/update", async (req, res) => {
   try {
     const userData = req.user;
@@ -123,6 +123,7 @@ router.patch("/update", async (req, res) => {
         description: req.body.description,
         price: req.body.price,
       }
+
       const valiResult = validation.courseValidation(updateData).error;
       if (valiResult) {
         const dataError = valiResult.details[0].path;
@@ -200,6 +201,69 @@ router.patch("/update", async (req, res) => {
     });
   }
 
+});
+
+router.delete("/delete", async (req, res) => {
+  try {
+    const userData = req.user;
+    if (userData) {
+      if (!userData.isInstructor()) {
+        return res.json({
+          code: 442,
+          result: `No Instructor ....，只有講師才能修改課程。`
+        });
+      }
+
+      const dbSearchResult = await Course.findOne({ _id: req.body._id });
+      if (!dbSearchResult) {
+        return res.json({
+          code: 443,
+          data: {
+            result: "無資料",
+            Message: `此課程不存在`
+          }
+        });
+      }
+
+      const dbDeleteResult = await Course.deleteOne({ _id: req.body._id }).exec();
+      if (dbDeleteResult) {
+        return res.json({
+          code: 200,
+          data: {
+            result: "課程刪除成功",
+            Message: `${dbDeleteResult}`
+          }
+        });
+      }
+      else {
+        return res.json({
+          code: 435,
+          data: {
+            result: "無資料",
+            Message: `此課程不存在`
+          }
+        });
+      }
+
+
+
+    }
+    else {
+      return res.json({
+        code: 441,
+        result: `無資料請重新登入`
+      });
+    }
+  }
+  catch (e) {
+    return res.json({
+      code: 440,
+      data: {
+        result: "伺服器程式異常....",
+        Message: `${e}`
+      }
+    });
+  }
 });
 
 

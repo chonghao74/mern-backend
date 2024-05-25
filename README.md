@@ -7,3 +7,4 @@
 5. 學習 passport-jwt 進行 jwt 驗證。
 6. 學習 若需要全部都要進行驗證則可以把 middlweware 寫在 app.use 內加入驗證的 middleware。
 7. 完成各註冊、登入、驗證、課程新增、查詢的 routes。
+8. 完成 課程刪除功能與 route。
