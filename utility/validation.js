@@ -23,9 +23,9 @@ const loginValidation = (reqData) => {
 
 const courseValidation = (reqData) => {
   const schema = Joi.object({
-    title: Joi.string().min(4).max(50).required(),
-    description: Joi.string().min(8).max(255).required(),
-    price: Joi.number().min(100).max(1000).required()
+    title: Joi.string().min(4).max(50),
+    description: Joi.string().min(8).max(255),
+    price: Joi.number().min(100).max(1000)
   });
 
   return schema.validate(reqData);

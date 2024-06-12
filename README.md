@@ -1,3 +1,9 @@
+# 2024/06
+
+1. 調整 script 改為 start-backend-app。
+2. 調整 env port 從 0001 改成 1001，否則 frontend fetch data fail。
+3. courseValidation 驗證都改為 不需要 required，就能部分內容修改。 
+
 # 2024/05
 
 1. 完成 modiel 設計，且學習 type 屬性可以為 \_\_id (mongoose.Schema.Types.ObjectId)。
