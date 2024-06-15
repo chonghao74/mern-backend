@@ -55,8 +55,10 @@ const authenticated = (req, res, next) => {
 
     return res.json({
       code: 412,
-      result: "Token 錯誤或失效",
-      errorMessage: `${info}`,
+      data: {
+        result: "Token 錯誤或失效",
+        errorMessage: `${info}`,
+      },
     });
   })(req, res, next);
 };
