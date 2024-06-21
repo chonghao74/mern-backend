@@ -102,7 +102,7 @@ router.post("/create", async (req, res) => {
 });
 
 //更新課程內容 (only Insductor)
-router.patch("/update", async (req, res) => {
+router.put("/update", async (req, res) => {
   try {
     const userData = req.user;
     if (userData) {

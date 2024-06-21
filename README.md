@@ -4,6 +4,7 @@
 2. 調整 env port 從 0001 改成 1001，否則 frontend fetch data fail。
 3. courseValidation 驗證都改為 不需要 required，就能部分內容修改。
 4. 調整回傳物件內容與文字。
+5. update api 從 patch 改成 pat。
 
 # 2024/05
 
